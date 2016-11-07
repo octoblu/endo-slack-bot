@@ -7,8 +7,6 @@ class ChannelList
     @token = @encrypted.secrets.credentials.secret
 
   do: ({data}, callback) =>
-    return callback @_userError(422, 'data is required') unless data?
-
     slack.channels.list { @token }, (error, results) =>
       return callback error if error?
       return callback null, {
